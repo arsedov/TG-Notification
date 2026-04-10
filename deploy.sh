@@ -11,7 +11,7 @@ git pull origin main
 
 # Rebuild and restart containers
 echo "🛠 Rebuilding and restarting containers..."
-docker-compose up -d --build
+docker compose up -d --build
 
 # Clean up unused images to save space on VPS
 echo "🧹 Cleaning up old images..."
