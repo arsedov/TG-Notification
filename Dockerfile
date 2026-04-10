@@ -17,4 +17,4 @@ COPY main.py .
 # Command to run the application
 # We use shell form to allow environment variable expansion for PORT if needed, 
 # but fixed 8000 inside container is standard for docker-compose mapping.
-CMD ["uvicorn", "main.py:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
