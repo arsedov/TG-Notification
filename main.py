@@ -12,6 +12,8 @@ logging.basicConfig(
     handlers=[logging.StreamHandler()]
 )
 logger = logging.getLogger(__name__)
+# httpx пишет в INFO полный URL запроса, а в нём токен бота
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 # Load environment variables
 load_dotenv()
@@ -39,7 +41,7 @@ class Notification(BaseModel):
 
 async def verify_auth_key(request: Request, x_auth_key: str = Header(None)):
     if x_auth_key != AUTH_KEY:
-        logger.warning(f"Unauthorized access attempt from {request.client.host}. Key: {x_auth_key}")
+        logger.warning(f"Unauthorized access attempt from {request.client.host}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or missing Authorization Key"
